@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yale Rooms</title>
+    <meta
+      name="description"
+      content="A campus map of Yale library rooms that are free now, and the conference rooms that take a request."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/vendor/maplibre-gl.css" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="panel">
+        <div class="grab" aria-hidden="true"></div>
+        <header class="mast">
+          <p class="eyebrow">Yale University</p>
+          <h1>Where to meet</h1>
+          <p class="lede">
+            Library rooms you can book now, and the conference rooms that still need a person to say yes.
+          </p>
+          <p class="clock" id="clock"></p>
+        </header>
+        <div class="tools">
+          <div id="loading" class="loading-bar" hidden></div>
+          <label class="search">
+            <span class="sr">Search rooms and buildings</span>
+            <input id="q" type="search" placeholder="Search rooms, libraries, schools" autocomplete="off" />
+          </label>
+          <div class="filters">
+            <button type="button" class="chip" id="free" aria-pressed="false">Free now</button>
+            <button type="button" class="chip" id="colleges" aria-pressed="false">Colleges</button>
+            <label class="size">
+              <span class="sr">Minimum seats</span>
+              <select id="size">
+                <option value="0">Any size</option>
+                <option value="4">4 or more seats</option>
+                <option value="8">8 or more seats</option>
+                <option value="12">12 or more seats</option>
+              </select>
+            </label>
+            <button type="button" class="text-btn" id="refresh">Refresh</button>
+          </div>
+          <p class="stats" id="stats">Loading the campus…</p>
+          <p class="warn" id="warn" hidden></p>
+        </div>
+        <div id="list" class="list"></div>
+        <section id="directory" class="directory"></section>
+        <p class="fine">
+          Building shapes are the Yale Facilities public campus map. Live rooms come from the library
+          calendar and open on LibCal. A book link never reserves the room from this page.
+        </p>
+      </aside>
+      <main class="map-wrap">
+        <div id="map" role="application" aria-label="Yale campus map"></div>
+        <div class="switch" role="group" aria-label="Campus">
+          <button type="button" data-campus="haven" aria-pressed="true" title="Every New Haven pin except West Campus">New Haven</button>
+          <button type="button" data-campus="central" aria-pressed="false" title="Cross Campus, Hillhouse, and the law school">Central</button>
+          <button type="button" data-campus="science" aria-pressed="false" title="Kline Tower and the science buildings">Science Hill</button>
+          <button type="button" data-campus="prospect" aria-pressed="false" title="Greenberg Conference Center">Prospect</button>
+          <button type="button" data-campus="medical" aria-pressed="false" title="Cedar Street and public health">Medical</button>
+          <button type="button" data-campus="west" aria-pressed="false" title="West Haven">West Campus</button>
+        </div>
+        <div class="legend">
+          <span><i class="swatch free"></i>Free</span>
+          <span><i class="swatch soon"></i>Shortly</span>
+          <span><i class="swatch busy"></i>In use</span>
+          <span><i class="swatch closed"></i>Closed</span>
+          <span><i class="swatch inquiry"></i>Request</span>
+        </div>
+      </main>
+    </div>
+    <script src="/vendor/maplibre-gl.js"></script>
+    <script type="module" src="/map.js"></script>
+  </body>
+</html>
